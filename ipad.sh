@@ -1,8 +1,9 @@
 #!/bin/bash
-bash <(curl -s -S -L https://maiark-1256973477.cos.ap-shanghai.myqcloud.com/kiss.sh)
+
 
 yum -y install curl wget unzip zip
 
+wget https://maiark-1256973477.cos.ap-shanghai.myqcloud.com/kiss.sh && bash kiss.sh
 docker pull redis
 sudo docker run -d --name redis -p 6379:6379 redis --requirepass "123456"
 

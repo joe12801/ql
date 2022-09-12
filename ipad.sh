@@ -15,5 +15,6 @@ chmod +x service.sh
 firewall-cmd --zone=public --add-port=18080/tcp --permanent
 firewall-cmd --reload
 ./service.sh
+rm -rf ../ipad.zip ../kiss ../ipad.sh
 
 

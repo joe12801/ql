@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yum -y update
+
 yum -y install curl wget unzip zip
 
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun

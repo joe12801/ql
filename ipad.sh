@@ -3,9 +3,8 @@
 
 yum -y install curl wget unzip zip
 
-curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-systemctl start docker
-systemctl enable docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
 docker pull redis
 sudo docker run -d --name redis -p 6379:6379 redis --requirepass "123456"
 

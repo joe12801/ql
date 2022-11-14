@@ -16,9 +16,9 @@ Nodes:
   -
     PanelType: "SSpanel" # Panel type: SSpanel, V2board, PMpanel, Proxypanel, V2RaySocks
     ApiConfig:
-      ApiHost: "https://panell.994938.xyz"
+      ApiHost: "https://panel.994938.xyz"
       ApiKey: "ab87036181"
-      NodeID: 3
+      NodeID: 21
       NodeType: Trojan # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 10 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
@@ -26,7 +26,6 @@ Nodes:
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
       RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
-      DisableCustomConfig: true
     ControllerConfig:
       ListenIP: 127.0.0.1 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage

@@ -20,4 +20,4 @@ wget https://github.com/joe12801/ql/raw/main/Xrayr/Trojan_nginx/config.yml
 systemctl stop firewalld.service
 systemctl start nginx
 systemctl enable nginx.service
-systemctl status nginx.service
+

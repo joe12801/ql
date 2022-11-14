@@ -1,6 +1,6 @@
 #!/bin/bash
 apt update
-atp install wget curl -y
+apt install wget curl -y
 
 sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
 

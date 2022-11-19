@@ -23,7 +23,7 @@ sleep 5
  wget http://jd29.994938.xyz/d/root/gd/English.srt
 
 str=$"\n"
-nohup ffmpeg -i Spirited.2022.1080p.WEBRip.x264-RARBG.mp4 -vf "subtitles=English.srt" -threads 2 -c:v libx264 -crf 20 -c:a aac -b:a 2727k Spirited-En.mp4 >/dev/null 2>&1 &
+nohup ffmpeg -i Spirited.2022.1080p.WEBRip.x264-RARBG.mp4 -vf "subtitles=English.srt"  Spirited-En.mp4 >/dev/null 2>&1 &
 sstr=$(echo -e $str)
 echo $sstr 
 

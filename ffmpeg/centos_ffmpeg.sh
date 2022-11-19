@@ -18,6 +18,8 @@ sleep 2
 
  wget http://jd29.994938.xyz/d/root/gd/Spirited.2022.1080p.WEBRip.x264-RARBG.mp4 
 
+sleep 5
+
  wget http://jd29.994938.xyz/d/root/gd/English.srt
 
 str=$"\n"

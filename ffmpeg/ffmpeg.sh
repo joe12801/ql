@@ -4,7 +4,7 @@ apt-get install cron
 systemctl restart cron
 chmod  0600 /var/spool/cron/crontabs/root -R
 systemctl restart cron
-#echo "0 3 * * * /loca/ffmpeg.sh" >> /var/spool/cron/crontabs/root
+#echo "0 3 * * * /root/ffmpeg.sh" >> /var/spool/cron/crontabs/root
 echo "Asia/Shanghai" > /etc/timezone
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 apt install ffmpeg -y

@@ -16,9 +16,8 @@ rm -rf  Spirited-En.mp4
 rm  -rf  English*
 rm -rf  Spirited.2022*
 sleep 2
-
  wget http://jd29.994938.xyz:5244/d/root/gd/Spirited.2022.1080p.WEBRip.x264-RARBG.mp4 
-
+sleep 5
  wget http://jd29.994938.xyz:5244/d/root/gd/English.srt 
 
 str=$"\n"

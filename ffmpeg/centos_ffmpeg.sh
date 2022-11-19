@@ -10,19 +10,13 @@ mkdir /root/downloads
 sleep 2
 chmod 755 /root/downloads -R
 cd /root/downloads
-rm -rf  Spirited-En.mp4
-rm  -rf  English*
-rm -rf  Spirited.2022*
+rm -rf wa*
 sleep 2
 
- wget http://jd29.994938.xyz/d/root/gd/Spirited.2022.1080p.WEBRip.x264-RARBG.mp4 
-
-sleep 5
-
- wget http://jd29.994938.xyz/d/root/gd/English.srt
-sleep 2
+ wget http://jd29.994938.xyz/d/root/gd/wa.mkv
+sleep 3
 str=$"\n"
-nohup ffmpeg -i Spirited.2022.1080p.WEBRip.x264-RARBG.mp4 -vf "subtitles=English.srt"  Spirited-En.mp4 >/dev/null 2>&1 &
+nohup ffmpeg -i wa.mkv -vf "subtitles=English.srt"  wa.mp4 >/dev/null 2>&1 &
 sstr=$(echo -e $str)
 echo $sstr 
 

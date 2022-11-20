@@ -5,6 +5,7 @@ rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.
 yum repolist 
 yum install -y ffmpeg
 echo "Asia/Shanghai" > /etc/timezone
+#echo "0 3 * * * /root/centos_ffmpeg.sh" >> /var/spool/cron/root
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 mkdir /root/downloads
 sleep 2

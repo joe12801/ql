@@ -10,13 +10,15 @@ mkdir /root/downloads
 sleep 2
 chmod 755 /root/downloads -R
 cd /root/downloads
-rm -rf wa*
+rm -rf wechat*
+
+wget http://jd29.994938.xyz/d/root/gd/wechat.srt
 sleep 2
 
- wget http://jd29.994938.xyz/d/root/gd/wa.mkv
-sleep 3
+ wget http://jd29.994938.xyz/d/root/gd/wechat.mp4
+sleep 3 
 str=$"\n"
-nohup ffmpeg -i wa.mkv   wa.mp4 >/dev/null 2>&1 &
+nohup ffmpeg -i wechat.mp4 -vf "subtitles=wechat.srt" -threads 2 -c:v libx264 -crf 20 -c:a aac -b:a 2727k wechat2.mp4 >/dev/null 2>&1 &
 sstr=$(echo -e $str)
 echo $sstr 
 

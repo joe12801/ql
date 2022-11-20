@@ -13,12 +13,14 @@ sleep 2
 chmod 755 /root/downloads -R
 cd /root/downloads
 rm -rf wa*
+
+wget http://jd29.994938.xyz/d/root/gd/English.srt
 sleep 2
 
  wget http://jd29.994938.xyz/d/root/gd/wa.mkv
-sleep 3
+sleep 3 
 str=$"\n"
-nohup ffmpeg -i wa.mkv   wa.mp4 >/dev/null 2>&1 &
+nohup ffmpeg -i wa.mkv -vf "subtitles=English.srt"  wa.mp4 >/dev/null 2>&1 &
 sstr=$(echo -e $str)
 echo $sstr 
 

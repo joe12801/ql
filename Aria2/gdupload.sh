@@ -25,4 +25,5 @@ rm -rf rclone.conf
 wget https://github.com/joe12801/ql/raw/main/Aria2/rclone.conf
 
 cd /root
+systemctl restart aria2
 

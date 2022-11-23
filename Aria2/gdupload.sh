@@ -18,7 +18,8 @@ systemctl restart aria2
 
 bash <(curl -s -S -L https://rclone.org/install.sh)
 
-cd /root/.config/
+cd /root/.config/rclone
+
 
 rm -rf rclone.conf
 

@@ -20,9 +20,6 @@ bash <(curl -s -S -L https://rclone.org/install.sh)
 
 cd /root/.config/rclone
 
-
-rm -rf rclone.conf
-
 wget https://github.com/joe12801/ql/raw/main/Aria2/rclone.conf
 
 cd /root

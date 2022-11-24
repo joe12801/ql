@@ -17,7 +17,7 @@ chmod 755 script.conf core aria2.conf
 systemctl restart aria2
 
 bash <(curl -s -S -L https://rclone.org/install.sh)
-
+rclone
 sleep 2
 cd /root/.config/rclone
 

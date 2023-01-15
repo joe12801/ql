@@ -14,5 +14,4 @@ rm -rf /etc/XrayR/config.yml
 wget https://raw.githubusercontent.com/joe12801/ql/main/Xrayr/config.yml
 
 systemctl stop firewalld.service
-systemctl start nginx
-systemctl enable nginx.service
+

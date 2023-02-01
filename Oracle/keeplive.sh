@@ -15,7 +15,7 @@ ins_opt () {
     [[ "x${ins}" == "x" ]] && exit 233;
     ${ins} install -y "$1" &>/dev/null || exit 233;
 }
-
+mkdir -p /opt/shuaibi
 set_cpu_net () {
     cpuq=$(lscpu | awk '/^CPU\(/{print $NF*100/4}');
     [ -d "/opt/shuaibi" ] || mkdir -p /opt/shuaibi;

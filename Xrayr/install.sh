@@ -115,7 +115,7 @@ install_XrayR() {
             exit 1
         fi
         echo -e "检测到 XrayR 最新版本：${last_version}，开始安装"
-        wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip
+        wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/joe12801/xrayr1280/releases/download/${last_version}/XrayR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 XrayR 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
@@ -126,7 +126,7 @@ install_XrayR() {
 	else
 	    last_version="v"$1
 	fi
-        url="https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+        url="https://github.com/joe12801/xrayr1280/releases/download/${last_version}/XrayR-linux-${arch}.zip"
         echo -e "开始安装 XrayR ${last_version}"
         wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
@@ -181,7 +181,7 @@ install_XrayR() {
     if [[ ! -f /etc/XrayR/rulelist ]]; then
         cp rulelist /etc/XrayR/
     fi
-    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/XrayR.sh
+    curl -o /usr/bin/XrayR -Ls https://raw.githubusercontent.com/joe12801/ql/main/Xrayr/XrayR.sh
     chmod +x /usr/bin/XrayR
     ln -s /usr/bin/XrayR /usr/bin/xrayr # 小写兼容
     chmod +x /usr/bin/xrayr

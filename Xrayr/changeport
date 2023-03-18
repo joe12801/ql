@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bash <(curl -fsSL git.io/warp.sh) d
+#bash <(curl -fsSL git.io/warp.sh) d
 
 # 获取用户输入的端口号
 read -p "请输入新的端口号: " port

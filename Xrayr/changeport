@@ -4,15 +4,14 @@ bash <(curl -fsSL git.io/warp.sh) d
 
 # 获取用户输入的端口号
 read -p "请输入新的端口号: " port
-
+systemctl stop wg-quick@wgcf
 # 使用sed命令替换端口号
 sed -i "s/listen\s\+[0-9]\+\s*ssl;/listen $port ssl;/" /etc/nginx/nginx.conf
 
 # 重启Nginx服务
 systemctl restart nginx
 
-systemctl stop wg-quick@wgcf
+
 
 xrayr restart
 
-systemctl stop wg-quick@wgcf

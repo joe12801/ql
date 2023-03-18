@@ -15,4 +15,4 @@ systemctl stop wg-quick@wgcf
 
 xrayr restart
 
-systemctl restart wg-quick@wgcf
+systemctl stop wg-quick@wgcf

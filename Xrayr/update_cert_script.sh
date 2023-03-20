@@ -7,3 +7,7 @@ bash update_cert.sh
 #显示cronjob列表
 echo "当前的cronjob列表："
 crontab -l
+
+systemctl restart nginx
+
+xrayr restart

@@ -10,5 +10,8 @@ echo "当前的cronjob列表："
 crontab -l
 
 systemctl restart nginx
+systemctl stop wg-quick@wgcf
 
 xrayr restart
+
+systemctl restart wg-quick@wgcf

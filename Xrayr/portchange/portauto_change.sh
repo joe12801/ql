@@ -11,5 +11,6 @@ chmod +x node.sh ser.sh change.sh portchage.sh
 (crontab -l ; echo "0 */2 * * * /etc/nginx/change.sh") | crontab -
 #显示cronjob列表
 echo "当前的cronjob列表："
+crontab -l
 
 

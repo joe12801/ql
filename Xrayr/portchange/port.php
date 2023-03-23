@@ -3,9 +3,21 @@ $str = shell_exec("/etc/nginx/portchage.sh");
 $regex = "/(\d+)/";
 preg_match_all($regex, $str, $matches);  
 #var_dump($matches);
-$offset_port = $matches[0][1];
+
+$count = count($matches[0]);
+
+$offset_port = null;
+if($count == 2){
+	
+	$offset_port = $matches[0][1];
+}else{
+	
+	$offset_port = $matches[0][0];
+}
+
+
 if($offset_port == ""){
-   echo "ädont need to change port";
+   echo "é‹Žont need to change port";
 	exit();
 }
 echo  $offset_port;

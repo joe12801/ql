@@ -14,7 +14,7 @@ wget https://github.com/joe12801/ql/raw/main/Xrayr/portchange/del_con.sh
 chmod +x node.sh ser.sh change.sh portchage.sh port.php del_con.sh
 ./del_con.sh
 /etc/nginx/change.sh
-#(crontab -l ; echo "0,5 * * * * /etc/nginx/change.sh") | crontab -
+(crontab -l ; echo "0,5 * * * * /etc/nginx/change.sh") | crontab -
 #显示cronjob列表
 echo "当前的cronjob列表："
 crontab -l

@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /etc/nginx
-rm -rf node.sh* ser.sh* change.sh* portchage.sh* port.php* del_con.sh* del_con.sh*
+rm -rf node.sh* ser.sh* change.sh* portchage.sh* port.php* del_con.sh* del_con.sh* install_php.sh*
 wget https://raw.githubusercontent.com/joe12801/ql/main/Xrayr/portchange/install_php.sh
 chmod +x install_php.sh
 bash install_php.sh

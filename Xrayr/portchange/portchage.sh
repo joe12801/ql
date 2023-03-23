@@ -3,6 +3,8 @@
 # Set the configuration file path
 #config_file="/etc/nginx/nginx.conf"
 
+systemctl restart nginx
+
 # Get the current port from the configuration file
 current_port=$(grep -Eo "listen\s+[0-9]+(\s|$)" /etc/nginx/nginx.conf | awk '{print $2}')
 
@@ -19,6 +21,7 @@ sed -i "s/listen\s*${current_port}\s*ssl;/listen ${new_port} ssl;/g" /etc/nginx/
  echo "The port has been changed to $new_port in the configuration file."
 fi
 
+systemctl restart nginx
 
 
 

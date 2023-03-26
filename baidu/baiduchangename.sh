@@ -12,7 +12,7 @@ BaiduPCS-Go cd $path
 
 # 批量修改文件名（将 old_char 替换为 new_char）
 for file in $file_list; do
-		  new_file="${file//$old_char/$new_char}"
-		  	    BaiduPCS-Go mv "$file" "$new_file"
-		    done
+       new_file="${file//$old_char/$new_char}"
+      BaiduPCS-Go mv "$file" "$new_file"
+   done
 

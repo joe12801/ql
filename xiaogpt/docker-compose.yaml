@@ -7,7 +7,6 @@ services:
       - "9527:9527"
     volumes:
       - /root/xiaogpt:/config
-      - /root/xiaogpt/cookies.json:/cookies.json:ro
     deploy:
       restart_policy:
         condition: on-failure

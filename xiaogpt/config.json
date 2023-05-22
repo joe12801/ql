@@ -1,8 +1,8 @@
 {
-  "openai_key": "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",
-  "account": "15999961150",
-  "password": "ab87036181",
-  "hardware": "LX06",
+  "openai_key": "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",#openai api的key
+  "account": "1577761150",#小米的账号
+  "password": "abryrr",#小米的密码
+  "hardware": "LX06",#小爱音箱的型号
   "stream":true,
   "bot" : "chatgptapi",
   "enable_edge_tts": true,

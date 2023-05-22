@@ -5,8 +5,6 @@ services:
     command: --config=/config/config.json
     ports:
       - "9527:9527"
-    environment:
-      XIAOGPT_HOSTNAME: 192.168.2.110
     volumes:
       - /root/xiaogpt:/config
       - /root/xiaogpt/cookies.json:/cookies.json:ro

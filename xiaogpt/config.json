@@ -5,9 +5,9 @@
   "hardware": "LX06",#小爱音箱的型号
   "stream":true,
   "bot" : "chatgptapi",
-  "enable_edge_tts": true,
+  "enable_edge_tts": false,
   "edge_tts_voice" : "zh-CN-XiaoyiNeural",
-  "localhost": true,
+  "localhost": false,
   "stream": true,
   "start_conversation" : "开始连续对话",
   "end_conversation": "连续结束",

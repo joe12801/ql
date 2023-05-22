@@ -13,7 +13,7 @@
   "end_conversation": "连续结束",
    "bing_cookie_path": "/cookies.json",
    "keyword":"请回答",
-   "mute_xiaoai": true,
+   "mute_xiaoai": false,
    "gpt_options": {
         "temperature": 0.9,
         "top_p": 0.9

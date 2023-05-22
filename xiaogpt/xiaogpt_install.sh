@@ -66,3 +66,4 @@ sed -i "s/\"hardware\": \"LX06\"/\"hardware\": \"$hardware\"/g" config.json
 
 
 docker-compose up -d
+docker-compose logs -f

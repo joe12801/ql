@@ -1,0 +1,23 @@
+{
+  "openai_key": "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",
+  "account": "15999961150",
+  "password": "ab87036181",
+  "hardware": "LX06",
+  "stream":true,
+  "bot" : "chatgptapi",
+  "enable_edge_tts": true,
+  "edge_tts_voice" : "zh-CN-XiaoyiNeural",
+  "localhost": true,
+  "stream": true,
+  "start_conversation" : "开始连续对话",
+  "end_conversation": "连续结束",
+   "bing_cookie_path": "/cookies.json",
+   "keyword":"请回答",
+   "mute_xiaoai": true,
+   "gpt_options": {
+        "temperature": 0.9,
+        "top_p": 0.9
+    }
+
+}
+  

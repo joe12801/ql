@@ -40,21 +40,17 @@ wget https://github.com/joe12801/ql/raw/main/xiaogpt/docker-compose.yaml
 
 wget https://github.com/joe12801/ql/raw/main/xiaogpt/cookies.json
 
-
-
-
-
 # 读取用户输入的 openai_key 值
 read -p "请输入 openai_key 值: " openai_key
 
 # 读取用户输入的小米账号 account 值
-read -p "请输入 account 值: " account
+read -p "请输入小米账号 account 值: " account
 
 # 读取用户输入的小米的密码 password 值
-read -p "请输入 password 值: " password
+read -p "请输入小米的密码 password 值: " password
 
 # 读取用户输入的 小爱音箱的型号hardware 值
-read -p "请输入 hardware 值: " hardware
+read -p "请输入小爱音箱的型号 hardware 值: " hardware
 
 # 将用户输入的值赋给相应的变量
 openai_key="$openai_key"

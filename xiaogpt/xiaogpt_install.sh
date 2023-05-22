@@ -63,7 +63,7 @@ password="$password"
 hardware="$hardware"
 
 # 替换 config.json 中的对应值
-sed -i "s/\"openai_key\": \"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\"/\"openai_key\": \"$openai_key\"/g" config.json
+sed -i "s/\"openai_key\": \"sk\"/\"openai_key\": \"$openai_key\"/g" config.json
 sed -i "s/\"account\": \"13800138000\"/\"account\": \"$account\"/g" config.json
 sed -i "s/\"password\": \"abcd1234\"/\"password\": \"$password\"/g" config.json
 sed -i "s/\"hardware\": \"LX06\"/\"hardware\": \"$hardware\"/g" config.json

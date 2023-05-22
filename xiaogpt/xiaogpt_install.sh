@@ -1,5 +1,7 @@
 #!/bin/bash
 
+INSTALL_DIR=./xiaogpt
+
 if ! [ -x "$(command -v curl)" ]; then
   echo -e "${RED}错误：${PLAIN} 未检测到 curl，请先安装此程序。" 
 fi
@@ -29,5 +31,42 @@ if ! [ -x "$(command -v docker-compose)" ]; then
 fi
 
 mkdir xiaogpt
+
 cd xiaogpt
 
+wget https://github.com/joe12801/ql/raw/main/xiaogpt/config.json
+
+wget https://github.com/joe12801/ql/raw/main/xiaogpt/docker-compose.yaml
+
+wget https://github.com/joe12801/ql/raw/main/xiaogpt/cookies.json
+
+
+
+#!/bin/bash
+
+# 读取用户输入的 openai_key 值
+read -p "请输入 openai_key 值: " openai_key
+
+# 读取用户输入的小米账号 account 值
+read -p "请输入 account 值: " account
+
+# 读取用户输入的小米的密码 password 值
+read -p "请输入 password 值: " password
+
+# 读取用户输入的 小爱音箱的型号hardware 值
+read -p "请输入 hardware 值: " hardware
+
+# 将用户输入的值赋给相应的变量
+openai_key="$openai_key"
+account="$account"
+password="$password"
+hardware="$hardware"
+
+# 替换 config.json 中的对应值
+sed -i "s/\"openai_key\": \"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\"/\"openai_key\": \"$openai_key\"/g" config.json
+sed -i "s/\"account\": \"15999961150\"/\"account\": \"$account\"/g" config.json
+sed -i "s/\"password\": \"ab87036181\"/\"password\": \"$password\"/g" config.json
+sed -i "s/\"hardware\": \"LX06\"/\"hardware\": \"$hardware\"/g" config.json
+
+
+docker-compose up -d

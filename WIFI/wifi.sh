@@ -61,6 +61,8 @@ chmod +x start.sh
 
 sudo sh -c 'echo "/bin/bash /root/chatgpt/wifi_chatgpt/start.sh" >> /etc/rc.local'
 
+sudo reboot
+
 
 
 

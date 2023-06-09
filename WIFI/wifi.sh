@@ -46,52 +46,27 @@ git clone https://github.com/joe12801/wifi_chatgpt.git
 cd wifi_chatgpt
 
 #######################替换KEY
-#!/bin/bash
-
 # 获取原始内容
 original_content=$(<main.py)
 
-# 提示用户输入新的API密钥
+# 提示用户输入新的 OpenAI API 密钥
 read -p "OpenAI API密钥(必填): " new_openai_api_key
 
-# 提示用户输入新的PicoVoice API密钥
+# 提示用户输入新的 PicoVoice API 密钥
 read -p "PicoVoice API密钥(必填): " new_picovoice_api_key
 
 # 提示用户输入新的关键词路径
 read -p "PicoVoice唤醒关键词路径(必填): " new_keyword_path
 
-# 提示用户输入新的模型路径 https://github.com/Picovoice/porcupine/tree/master/lib/common
-read -p "PicoVoice模型路径(选填): " new_model_path
-
-# 提示用户输入新的百度APP ID
-read -p "百度APP ID(选填): " new_baidu_app_id
-
-# 提示用户输入新的百度API密钥
-read -p "百度API密钥(选填): " new_baidu_api_key
-
-# 提示用户输入新的Azure API密钥
-read -p "Azure API密钥(选填): " new_azure_api_key
-
-# 提示用户输入新的Azure区域
-read -p "Azure区域(选填): " new_azure_region
-
-# 提示用户输入新的SERPER API密钥
-read -p "SERPER API密钥(选填): " new_serper_api_key
-
-# 使用sed命令进行所有替换操作
+# 使用 sed 命令进行替换操作
 new_content=$(echo "$original_content" |
     sed "s/openai_api_key = \".*\"/openai_api_key = \"$new_openai_api_key\"/" |
-    sed "s/PICOVOICE_API_KEY = \".*\"/PICOVOICE_API_KEY = \"$new_picovoice_api_key\"/" |
-    sed "s#keyword_path = '.*'#keyword_path = '$new_keyword_path'#" |
-    sed "s#model_path = '.*'#model_path = '$new_model_path'#" |
-    sed "s/Baidu_APP_ID = '.*'/Baidu_APP_ID = '$new_baidu_app_id'/" |
-    sed "s/Baidu_API_KEY = '.*'/Baidu_API_KEY = '$new_baidu_api_key'/" |
-    sed "s/AZURE_API_KEY = \".*\"/AZURE_API_KEY = \"$new_azure_api_key\"/" |
-    sed "s/AZURE_REGION = \".*\"/AZURE_REGION = \"$new_azure_region\"/" |
-    sed "s/os.environ\[\"SERPER_API_KEY\"\] = \".*\"/os.environ[\"SERPER_API_KEY\"] = \"$new_serper_api_key\"/")
+    sed "s#PICOVOICE_API_KEY =  '.*'#PICOVOICE_API_KEY =  '$new_picovoice_api_key'#" |
+    sed "s#keyword_path = '.*'#keyword_path = '$new_keyword_path'#" )
 
-# 将替换后的内容写回到main.py文件
+# 将替换后的内容写回到 main.py 文件
 echo "$new_content" > main.py
+
 ######################
 
 
@@ -103,7 +78,7 @@ touch start.sh
 
 echo '#!/bin/bash
 sleep 5
-cd /home/user/wifi_chatgpt/chatgpt
+cd /home/user/chatgpt/wifi_chatgpt/
 su -c "python3 main.py" user
 exit 0' > start.sh
 

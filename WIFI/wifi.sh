@@ -77,7 +77,7 @@ pip install -r requirements.txt
 touch start.sh
 
 echo '#!/bin/bash
-sleep 5
+sleep 8
 cd /home/user/chatgpt/wifi_chatgpt/
 su -c "python3 main.py" user
 exit 0' > start.sh

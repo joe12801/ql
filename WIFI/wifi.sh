@@ -1,5 +1,12 @@
 #!/bin/bash
+# 提示用户输入新的 OpenAI API 密钥
+read -p "OpenAI API密钥(必填): " new_openai_api_key
 
+# 提示用户输入新的 PicoVoice API 密钥
+read -p "PicoVoice API密钥(必填): " new_picovoice_api_key
+
+# 提示用户输入新的关键词路径
+read -p "PicoVoice唤醒关键词路径(必填): " new_keyword_path
 echo "1" | sudo -S apt update
 sudo apt-get install  git wget pulseaudio sox alsa-utils unzip zip python3 python3-pip portaudio19-dev -y 
 
@@ -49,14 +56,7 @@ cd wifi_chatgpt
 # 获取原始内容
 original_content=$(<main.py)
 
-# 提示用户输入新的 OpenAI API 密钥
-read -p "OpenAI API密钥(必填): " new_openai_api_key
 
-# 提示用户输入新的 PicoVoice API 密钥
-read -p "PicoVoice API密钥(必填): " new_picovoice_api_key
-
-# 提示用户输入新的关键词路径
-read -p "PicoVoice唤醒关键词路径(必填): " new_keyword_path
 
 # 使用 sed 命令进行替换操作
 new_content=$(echo "$original_content" |

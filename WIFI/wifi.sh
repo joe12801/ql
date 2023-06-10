@@ -59,13 +59,23 @@ original_content=$(<main.py)
 
 
 
-# 使用 sed 命令进行替换操作
+# 使用 awk 命令进行替换操作
 new_content=$(echo "$original_content" |
-    sed "s/openai_api_key = \".*\"/openai_api_key = \"$new_openai_api_key\"/" |
-    sed "s#PICOVOICE_API_KEY =  '.*'#PICOVOICE_API_KEY =  '$new_picovoice_api_key'#" |
-    sed "s#keyword_path = '.*'#keyword_path = '$new_keyword_path'#" )
+    awk -v new_openai_api_key="$new_openai_api_key" \
+        -v new_picovoice_api_key="$new_picovoice_api_key" \
+        -v new_keyword_path="$new_keyword_path" \
+        '{
+            if ($0 ~ /^openai_api_key = /) {
+                print "openai_api_key = \"" new_openai_api_key "\"";
+            } else if ($0 ~ /^PICOVOICE_API_KEY = /) {
+                print "PICOVOICE_API_KEY = \"" new_picovoice_api_key "\"";
+            } else if ($0 ~ /^keyword_path = /) {
+                print "keyword_path = \"" new_keyword_path "\"";
+            } else {
+                print $0;
+            }
+        }')
 
-# 将替换后的内容写回到 main.py 文件
 echo "$new_content" > main.py
 
 ######################

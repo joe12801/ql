@@ -105,7 +105,7 @@ sudo mv "$temp_file.tmp" /etc/rc.local
 # 授予正确的权限
 sudo chmod +x /etc/rc.local
 
-
+echo "重启..."
 sudo reboot
 
 

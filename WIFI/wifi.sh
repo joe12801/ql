@@ -31,7 +31,7 @@ systemctl --user start pulseaudio.service
 echo "host" | sudo -S tee /sys/kernel/debug/usb/ci_hdrc.0/role <<< "1" 
 
 sudo sed -i '/gc -e/ a\
-
+sleep 6
 echo host > /sys/kernel/debug/usb/ci_hdrc.0/role' /usr/sbin/mobian-usb-gadget 
 
 

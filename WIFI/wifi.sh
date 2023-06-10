@@ -113,7 +113,7 @@ sudo mv "$temp_file.tmp" /etc/rc.local
 
 # 授予正确的权限
 sudo chmod +x /etc/rc.local
-sudo rm -rf wifi.sh
+sudo rm -rf /root/wifi.sh
 echo "重启..."
 sudo reboot
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-apt install zip unzip 
+apt install zip unzip -y
 
 wget https://github.com/joe12801/ql/raw/main/chatgpt-qq/chatgpt-qq-arm-docker.zip
 unzip chatgpt-qq-arm-docker.zip

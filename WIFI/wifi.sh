@@ -28,22 +28,22 @@ systemctl --user enable pulseaudio.service
  
 systemctl --user start pulseaudio.service
  
-echo "host" | sudo -S tee /sys/kernel/debug/usb/ci_hdrc.0/role <<< "1" 
+#echo "host" | sudo -S tee /sys/kernel/debug/usb/ci_hdrc.0/role <<< "1" 
 
 sudo sed -i '/gc -e/ a\sleep 1\necho host > /sys/kernel/debug/usb/ci_hdrc.0/role' /usr/sbin/mobian-usb-gadget
 
 
 
-sox -d -d &
+#sox -d -d &
 
 # 获取sox命令的PID
-sox_pid=$!
+#sox_pid=$!
 
 # 等待5秒
-sleep 5
+#sleep 5
 
 # 终止sox进程
-kill "$sox_pid" 
+#kill "$sox_pid" 
  
 mkdir chatgpt
 

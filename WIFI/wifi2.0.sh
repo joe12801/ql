@@ -15,8 +15,8 @@ pip install paho-mqtt -
 pip install pydub 
 sudo apt install ffmpeg -y
 sudo apt install -y python3-dev libgirepository1.0-dev libcairo2-dev -y
-pip3 install pygobject
-
+sudo apt install -y gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-base gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad
+pip install pygobject
 
 echo "1" | sudo -S touch /etc/systemd/user/pulseaudio.service
 

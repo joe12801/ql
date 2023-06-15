@@ -11,10 +11,11 @@ echo "1" | sudo -S apt update
 sudo apt-get install  git wget pulseaudio sox alsa-utils unzip zip python3 python3-pip portaudio19-dev -y 
 sudo apt-get install python3-gst-1.0 gir1.2-gst-plugins-base-1.0 -y
 sudo apt-get install python3-gi python3-gi-cairo gir1.2-gtk-3.0 -y
-pip install paho-mqtt -
+pip install paho-mqtt
 pip install pydub 
 sudo apt install ffmpeg -y
 sudo apt install -y python3-dev libgirepository1.0-dev libcairo2-dev -y
+echo "1" | sudo -S apt update
 sudo apt install -y gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-base gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad
 pip install pygobject
 

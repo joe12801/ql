@@ -12,6 +12,7 @@ sudo apt-get install  git wget pulseaudio sox alsa-utils unzip zip python3 pytho
 sudo apt-get install python3-gst-1.0 gir1.2-gst-plugins-base-1.0 -y
 sudo apt-get install python3-gi python3-gi-cairo gir1.2-gtk-3.0 -y
 pip install paho-mqtt
+pip install flask
 pip install pydub 
 sudo apt install ffmpeg -y
 sudo apt install -y python3-dev libgirepository1.0-dev libcairo2-dev -y

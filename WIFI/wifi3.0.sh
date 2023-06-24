@@ -7,6 +7,8 @@ read -p "PicoVoice API密钥(必填): " new_picovoice_api_key
 
 # 提示用户输入新的关键词路径
 read -p "PicoVoice唤醒关键词路径(必填): " new_keyword_path
+rm -rf /etc/apt/sources.list
+wget -P /etc/apt/ https://github.com/joe12801/ql/raw/main/WIFI/sources.list
 echo "1" | sudo -S apt update
 sudo apt-get install  git wget pulseaudio sox alsa-utils unzip zip python3 python3-pip portaudio19-dev -y 
 sudo apt-get install python3-gst-1.0 gir1.2-gst-plugins-base-1.0 -y

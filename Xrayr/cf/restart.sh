@@ -1,2 +1,5 @@
 #!/bin/bash
-(crontab -l ; echo "30 3 * * * /usr/local/cert/update_cert.sh") | crontab -
+cd /etc/nginx
+wget https://github.com/joe12801/ql/raw/main/Xrayr/cf/chatgpt.sh
+(crontab -l ; echo "0 */6 * * * /etc/nginx/chatgpt.sh") | crontab -
+echo '更新成功'

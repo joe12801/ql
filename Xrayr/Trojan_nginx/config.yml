@@ -18,23 +18,22 @@ Nodes:
     ApiConfig:
       ApiHost: "https://panel.994938.xyz"
       ApiKey: "ab87036181"
-      NodeID: 189
+      NodeID: 19
       NodeType: Trojan # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
-      Timeout: 30 # Timeout for the api request
+      Timeout: 10 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
       RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
-      DisableCustomConfig: false
     ControllerConfig:
-      ListenIP: 0.0.0.0 # IP address you want to listen
+      ListenIP: 127.0.0.1 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send pacakage
       UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
       EnableDNS: false # Use custom DNS config, Please ensure that you set the dns.json well
       DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
-      EnableProxyProtocol: false # Only works for WebSocket and TCP
-      EnableFallback: false # Only support for Trojan and Vless
+      EnableProxyProtocol: true # Only works for WebSocket and TCP
+      EnableFallback: true # Only support for Trojan and Vless
       AutoSpeedLimitConfig:
         Limit: 0 # Warned speed. Set to 0 to disable AutoSpeedLimit (mbps)
         WarnTimes: 0 # After (WarnTimes) consecutive warnings, the user will be limited. Set to 0 to punish overspeed user immediately.
@@ -48,8 +47,8 @@ Nodes:
           Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/features/fallback.html for details.
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
-        CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "jd181.994938.xyz" # Domain to cert
+        CertMode: none # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
+        CertDomain: "jd9.994938.xyz" # Domain to cert
         CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
         KeyFile: /etc/XrayR/cert/node1.test.com.key
         Provider: cloudflare # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
@@ -57,4 +56,3 @@ Nodes:
         DNSEnv: # DNS ENV option used by DNS provider
           CLOUDFLARE_EMAIL: pengjoe1280@gmail.com
           CLOUDFLARE_API_KEY: 6bd15778f6678c4428a08ac43c619ce3d47a4	 
-

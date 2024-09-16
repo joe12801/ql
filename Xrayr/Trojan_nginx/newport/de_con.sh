@@ -11,7 +11,6 @@ then
 else
     echo "没有找到要删除的定时任务。"
 fi
-Ask
 /etc/nginx/ckport.sh
 (crontab -l ; echo "* */6 * * * /etc/nginx/ckport.sh") | crontab -
 #显示cronjob列表

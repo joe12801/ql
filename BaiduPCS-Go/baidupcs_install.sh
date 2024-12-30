@@ -4,7 +4,8 @@ apt update
 
 apt install zip unzip
 
-
+rm -rf /usr/local/BaiduPCS-Go*
+rm -rf /usr/bin/BaiduPCS-Go
 # 显示菜单选项
 echo "请选择一个选项："
 echo "1) amd"

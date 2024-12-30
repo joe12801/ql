@@ -27,9 +27,9 @@ case $choice in
         ;;
 esac
 
-wget -P /usr/local/ https://github.com/qjfoidnh/BaiduPCS-Go/releases/download/v3.9.6/BaiduPCS-Go-v3.9.6-linux-${code}.zip
+wget -P /usr/local https://github.com/qjfoidnh/BaiduPCS-Go/releases/download/v3.9.6/BaiduPCS-Go-v3.9.6-linux-${code}.zip
 
-unzip /usr/local/BaiduPCS-Go-v3.9.6-linux-${code}.zip
+unzip /usr/local/BaiduPCS-Go-v3.9.6-linux-${code}.zip -d /usr/local
 
 ln -s /usr/local/BaiduPCS-Go-v3.9.6-linux-${code}/BaiduPCS-Go /usr/bin/BaiduPCS-Go
 

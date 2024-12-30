@@ -16,10 +16,10 @@ read -p "请输入数字 (1 或 2): " choice
 # 根据输入进行处理
 case $choice in
     1)
-        code="amd"
+        code="amd64"
         ;;
     2)
-        code="arm"
+        code="arm64"
         ;;
     *)
         echo "无效的选择。请输入 1 或 2。"

@@ -59,3 +59,4 @@ fi
 
 BaiduPCS-Go login -bduss=${bduss} -stoken=${stoken}
 
+BaiduPCS-Go transfer https://pan.baidu.com/s/1FRI5gUKUlcJTcncSkI8HRA?pwd=9129 

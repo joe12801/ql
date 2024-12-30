@@ -4,8 +4,7 @@ apt update
 
 apt install zip unzip
 
-rm -rf /usr/local/BaiduPCS-Go*
-rm -rf /usr/bin/BaiduPCS-Go
+
 # 显示菜单选项
 echo "请选择一个选项："
 echo "1) amd"
@@ -27,7 +26,8 @@ case $choice in
         exit 1
         ;;
 esac
-
+rm -rf /usr/local/BaiduPCS-Go*
+rm -rf /usr/bin/BaiduPCS-Go
 wget -P /usr/local https://github.com/qjfoidnh/BaiduPCS-Go/releases/download/v3.9.6/BaiduPCS-Go-v3.9.6-linux-${code}.zip
 
 unzip /usr/local/BaiduPCS-Go-v3.9.6-linux-${code}.zip -d /usr/local

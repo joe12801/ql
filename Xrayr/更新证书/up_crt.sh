@@ -6,3 +6,7 @@ chmod +x update_crt.sh
 bash update_crt.sh
 
 (crontab -l ; echo "0 0 * * * /usr/local/cert/update_crt.sh") | crontab -
+
+#显示cronjob列表
+echo "当前的cronjob列表："
+crontab -l

@@ -6,7 +6,10 @@ wget https://raw.githubusercontent.com/joe12801/ql/refs/heads/main/Xrayr/%E6%9B%
 chmod +x update_crt.sh
 #bash update_crt.sh
 # 删除包含 update_crt.sh 的任务
+# 删除所有 update_crt.sh 任务
 crontab -l | grep -v "update_crt.sh" | crontab -
+
+# 重新添加一条
 (crontab -l ; echo "0 0 1 * * /usr/local/cert/update_crt.sh") | crontab -
 
 #显示cronjob列表

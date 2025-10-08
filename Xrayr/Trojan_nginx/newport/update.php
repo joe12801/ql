@@ -1,6 +1,6 @@
 <?php
 // 数据库配置信息
-$host = '124.221.86.129'; // 数据库服务器地址 
+$host = '175.178.196.61'; // 数据库服务器地址 
 $username = 'ports'; // 数据库用户名 
 $password = 'db4pfnxWY6Fk7aJt'; 
 // 数据库密码 
@@ -66,3 +66,4 @@ if ($result->num_rows > 0) {
 // 关闭数据库连接
 $conn->close();
 ?>
+

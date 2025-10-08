@@ -16,6 +16,7 @@ chmod +x node.sh ser.sh nginxport.sh new_port.sh check_port.sh ckport.sh update.
 
 /etc/nginx/ckport.sh
 # 删除旧任务并添加新任务
+crontab -l | grep -v "acme.sh" | crontab - && echo "删除完成，当前任务列表：" && crontab -l
 (crontab -l | grep -v "ckport.sh"; echo "0 0 * * 1 /etc/nginx/ckport.sh") | crontab -
 #(crontab -l ; echo "* */6 * * * /etc/nginx/ckport.sh") | crontab -
 #显示cronjob列表

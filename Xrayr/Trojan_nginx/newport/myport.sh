@@ -15,7 +15,9 @@ bash install_php.sh
 chmod +x node.sh ser.sh nginxport.sh new_port.sh check_port.sh ckport.sh update.php
 
 /etc/nginx/ckport.sh
-(crontab -l ; echo "* */6 * * * /etc/nginx/ckport.sh") | crontab -
+# 删除旧任务并添加新任务
+(crontab -l | grep -v "ckport.sh"; echo "0 0 * * 1 /etc/nginx/ckport.sh") | crontab -
+#(crontab -l ; echo "* */6 * * * /etc/nginx/ckport.sh") | crontab -
 #显示cronjob列表
 echo "当前的cronjob列表："
 crontab -l

@@ -1,6 +1,6 @@
 #!/bin/bash
 apt update
-apt install wget curl nginx -y
+apt install wget curl nginx-full -y
 
 sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
 

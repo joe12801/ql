@@ -1,0 +1,6 @@
+#!/bin/bash
+apt install sudo -y
+sudo useradd -m joe1280
+sudo passwd joe1280
+sudo usermod -aG sudo joe1280
+su - joe1280

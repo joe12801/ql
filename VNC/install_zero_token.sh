@@ -1,3 +1,6 @@
+!#/bin/bash
+### 用户普通用运行，加上sudo 再才可以
+
 
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash

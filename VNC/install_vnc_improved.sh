@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 apt install sudo -y
 sudo apt install curl wget git  -y
+apt-get install -y xz-utils openssl gawk file
+
+apt-get install wget -y
 sudo apt install chromium -y
 sudo apt install -y jq
 set -euo pipefail

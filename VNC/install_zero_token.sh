@@ -1,6 +1,6 @@
 !#/bin/bash
 ### 用户普通joe1280用运行，加上sudo 再才可以
-
+sudo apt install -y jq
 
 # Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash

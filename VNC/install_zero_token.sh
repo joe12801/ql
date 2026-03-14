@@ -1,5 +1,5 @@
 !#/bin/bash
-### 用户普通用运行，加上sudo 再才可以
+### 用户普通joe1280用运行，加上sudo 再才可以
 
 
 # Download and install nvm:

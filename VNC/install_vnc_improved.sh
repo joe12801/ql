@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-sudo apt install curl wget git  -y
+sudo apt install curl wget git sudo  -y
 sudo apt install chromium -y
 set -euo pipefail
 

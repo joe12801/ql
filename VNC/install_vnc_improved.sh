@@ -2,6 +2,7 @@
 apt install sudo -y
 sudo apt install curl wget git  -y
 sudo apt install chromium -y
+sudo apt install -y jq
 set -euo pipefail
 
 # Debian12 一键安装/修复 VNC（TigerVNC）+ XFCE

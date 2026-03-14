@@ -200,6 +200,6 @@ pnpm build
 
 pnpm ui:build
 
-bash start.s
+bash start.sh
 
 

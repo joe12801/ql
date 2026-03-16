@@ -115,7 +115,7 @@ Type=simple  # 用 simple + -fg 避免 PID 问题
 WorkingDirectory=/root
 ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
 # 启动命令（适配 root，参数化）
-ExecStart=/usr/bin/vncserver -fg -interface 0.0.0.0 ${LOCAL_FLAG} -geometry ${GEOMETRY} -depth ${DEPTH} :%i
+ExecStart=/usr/bin/vncserver -interface 0.0.0.0 -localhost no -geometry 1920x1080 -depth 24 :%i
 ExecStop=/usr/bin/vncserver -kill :%i
 
 Restart=on-failure

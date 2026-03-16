@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
+apt install sudo -y
+sudo apt install curl wget git  -y
+apt-get install -y xz-utils openssl gawk file
+
+apt-get install wget -y
+sudo apt install chromium -y
+sudo apt install -y jq
 set -euo pipefail
 
-# 先安装基础依赖
-apt install sudo -y
-sudo apt install curl wget git -y
-apt-get install -y xz-utils openssl gawk file jq
-
 # Debian12 一键安装/修复 VNC（TigerVNC）+ XFCE
-# 核心修改：VNC 用户改为 root，整合后续 Node.js 部署逻辑
+# 基于你提供的 install_vnc.sh 流程，做成真正可一键执行、可维护的脚本：
+#1) root 一键执行：安装依赖 / 创建用户 / 写 xstartup / 写 systemd / 启动服务
+#2) systemd 用 Type=simple + vncserver -fg：彻底规避 PIDFile 等不到导致 timeout
+#3) 自动清理残留 vnc/X 锁文件：解决 restart 前必须 pkill/rm 的问题
+#4) 支持参数化：用户名/显示号/分辨率/是否仅 localhost/中文字体与 UTF-8 locale
 
-# ===== 参数（已固定为 root） =====
-VNC_USER="root"  # 强制使用 root 作为 VNC 用户
+# ===== 参数（支持环境变量覆盖） =====
+VNC_USER="${VNC_USER:-root}"
 DISPLAY_NUM="${DISPLAY_NUM:-1}" # :1 ->5901
 GEOMETRY="${GEOMETRY:-1920x1080}"
 DEPTH="${DEPTH:-24}"
@@ -26,20 +32,35 @@ if [ "${EUID}" -ne 0 ]; then
  exit 1
 fi
 
+if [ -z "${VNC_USER}" ]; then
+ echo "ERROR: VNC_USER不能为空" >&2
+ exit 1
+fi
+
 VNC_DISPLAY=":${DISPLAY_NUM}"
 VNC_PORT=$((5900 + DISPLAY_NUM))
 
 log "目标：user=${VNC_USER} display=${VNC_DISPLAY} port=${VNC_PORT}"
 
-# ===== root 用户已存在，无需创建 =====
-VNC_HOME="/root"
-log "使用 root 用户，HOME 目录：${VNC_HOME}"
+# ===== 创建用户（如不存在） =====
+if id -u "${VNC_USER}" >/dev/null2>&1; then
+ log "用户已存在：${VNC_USER}"
+else
+ log "创建用户：${VNC_USER}"
+ adduser "${VNC_USER}"
+fi
+
+VNC_HOME="$(getent passwd "${VNC_USER}" | cut -d: -f6)"
+if [ -z "${VNC_HOME}" ]; then
+ echo "ERROR: 无法获取用户 ${VNC_USER} 的 home目录" >&2
+ exit 1
+fi
 
 # ===== 安装依赖 =====
 log "安装 XFCE + TigerVNC +依赖..."
 apt update
 apt install -y \
- xfce4 xfce4-goodies dbus-x11 xorg chromium \
+ xfce4 xfce4-goodies dbus-x11 xorg \
  tigervnc-standalone-server tigervnc-common
 
 if [ "${INSTALL_CN_FONTS}" = "1" ]; then
@@ -47,24 +68,24 @@ if [ "${INSTALL_CN_FONTS}" = "1" ]; then
  apt install -y locales fontconfig fonts-noto-cjk fonts-wqy-zenhei fonts-wqy-microhei || true
 
  if ! locale -a | grep -qi "^${LOCALE_UTF8}$"; then
- # 解除注释并生成 locale
+ # best-effort解除注释
  sed -i "s/^# \(${LOCALE_UTF8} UTF-8\)/\1/" /etc/locale.gen || true
  locale-gen "${LOCALE_UTF8}" || locale-gen
  fi
 
  update-locale LANG="${LOCALE_UTF8}" || true
- fc-cache -f -v >/dev/null 2>&1 || true
+ fc-cache -f -v >/dev/null2>&1 || true
 fi
 
-# ===== 写 xstartup（root 用户） =====
+# ===== 写 xstartup =====
 log "写入 xstartup..."
-mkdir -p "${VNC_HOME}/.vnc"
+su - "${VNC_USER}" -c 'mkdir -p ~/.vnc'
 cat > "${VNC_HOME}/.vnc/xstartup" <<EOF
 #!/bin/sh
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 
-# UTF-8 环境
+# UTF-8（装了中文字体时建议开启）
 export LANG=${LOCALE_UTF8}
 export LC_ALL=${LOCALE_UTF8}
 export LANGUAGE=zh_CN:zh
@@ -72,32 +93,32 @@ export LANGUAGE=zh_CN:zh
 [ -f "\$HOME/.Xresources" ] && xrdb "\$HOME/.Xresources"
 exec dbus-launch --exit-with-session startxfce4
 EOF
-chown root:root "${VNC_HOME}/.vnc/xstartup"
+chown "${VNC_USER}:${VNC_USER}" "${VNC_HOME}/.vnc/xstartup"
 chmod +x "${VNC_HOME}/.vnc/xstartup"
 
-# ===== 设置 VNC 密码（root 用户） =====
+# ===== 设置 VNC 密码（交互） =====
 log "设置 VNC 密码（会问 view-only password：选 n 即可）..."
-tigervncpasswd
+su - "${VNC_USER}" -c 'tigervncpasswd'
 
-# ===== 清理残留 =====
+# ===== 清理残留（做成自动） =====
 cleanup_vnc() {
  log "清理残留 VNC进程/锁文件..."
- pkill -9 Xvnc 2>/dev/null || true
- pkill -9 vncserver 2>/dev/null || true
- pkill -9 Xtigervnc 2>/dev/null || true
+ pkill -9 Xvnc2>/dev/null || true
+ pkill -9 vncserver2>/dev/null || true
+ pkill -9 Xtigervnc2>/dev/null || true
  sleep 2 || true
  rm -rf /tmp/.X11-unix/X* /tmp/.X*-lock || true
- rm -f "${VNC_HOME}/.vnc"/*.pid "${VNC_HOME}/.vnc"/*.log 2>/dev/null || true
+ rm -f "${VNC_HOME}/.vnc"/*.pid "${VNC_HOME}/.vnc"/*.log2>/dev/null || true
 }
 cleanup_vnc
 
-# ===== systemd 服务（适配 root 用户，修复 Type 问题） =====
+# ===== systemd 服务（Type=simple + -fg） =====
 log "写入 systemd 服务：vncserver@${DISPLAY_NUM}.service"
 SERVICE_FILE="/etc/systemd/system/vncserver@${DISPLAY_NUM}.service"
 
 if [ "${LOCALHOST_ONLY}" = "1" ]; then
  LOCAL_FLAG="-localhost yes"
- CONN_HINT="SSH 隧道（推荐）：ssh -L${VNC_PORT}:127.0.0.1:${VNC_PORT} root@<server_ip>；VNC 连127.0.0.1:${VNC_PORT}"
+ CONN_HINT="SSH 隧道（推荐）：ssh -L${VNC_PORT}:127.0.0.1:${VNC_PORT} ${VNC_USER}@<server_ip>；VNC 连127.0.0.1:${VNC_PORT}"
 else
  LOCAL_FLAG="-localhost no"
  CONN_HINT="直连：<server_ip>:${VNC_PORT}（不建议暴露公网）"
@@ -105,16 +126,17 @@ fi
 
 cat > "${SERVICE_FILE}" <<EOF
 [Unit]
-Description=Remote VNC Desktop for root
+Description=Remote VNC Desktop for /root
 After=network.target syslog.target
 
 [Service]
 User=root
 Group=root
-Type=simple  # 用 simple + -fg 避免 PID 问题
+Type=forking
 WorkingDirectory=/root
+# 启动前清理残留
 ExecStartPre=-/usr/bin/vncserver -kill :%i > /dev/null 2>&1
-# 启动命令（适配 root，参数化）
+# 核心启动命令：强制允许所有IP连接，禁用localhost限制
 ExecStart=/usr/bin/vncserver -interface 0.0.0.0 -localhost no -geometry 1920x1080 -depth 24 :%i
 ExecStop=/usr/bin/vncserver -kill :%i
 
@@ -125,7 +147,6 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
-# 重载并启动服务
 log "重载 systemd 并启动服务..."
 systemctl daemon-reload
 systemctl enable --now "vncserver@${DISPLAY_NUM}.service"
@@ -134,49 +155,52 @@ log "服务状态："
 systemctl --no-pager status "vncserver@${DISPLAY_NUM}.service" || true
 
 echo
-echo "✅ VNC 安装完成。"
+echo "✅ 完成。"
 echo "- VNC 用户：${VNC_USER}"
 echo "- display：${VNC_DISPLAY}"
-echo "- 端口：${VNC_PORT}"
-echo "- 连接方式：${CONN_HINT}"
+echo "-端口：${VNC_PORT}"
+echo "-连接方式：${CONN_HINT}"
 echo
+echo "若仍异常，请发："
+echo " systemctl status vncserver@${DISPLAY_NUM}.service --no-pager"
+echo " journalctl -u vncserver@${DISPLAY_NUM}.service -n120 --no-pager"
+#sudo usermod -aG sudo joe1280
+#su - joe1280
+#cd /home/joe1280/
 
-# ===== 安装 Node.js + nvm + pnpm + 部署项目（root 用户） =====
-log "开始安装 nvm 和 Node.js..."
+!#/bin/bash
+### 用户普通joe1280用运行，加上sudo 再才可以
+sudo apt install -y jq
 
-# 安装 nvm
+# Download and install nvm:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 
-# 加载 nvm（无需重启 shell）
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
 
-# 安装 Node.js 24
+# Download and install Node.js:
 nvm install 24
-nvm use 24
 
-# 验证 Node.js 版本
-log "Node.js 版本：$(node -v)"
+# Verify the Node.js version:
+node -v # Should print "v24.14.0".
 
-# 安装 pnpm
+# Download and install pnpm:
 corepack enable pnpm
-log "pnpm 版本：$(pnpm -v)"
 
-# 克隆项目并部署
-log "克隆项目并安装依赖..."
-git clone https://github.com/linuxhsj/openclaw-zero-token.git || log "项目已存在，跳过克隆"
-cd openclaw-zero-token || exit 1
+# Verify pnpm version:
+pnpm -v
+
+sudo apt install git -y
+
+git clone https://github.com/linuxhsj/openclaw-zero-token.git
+
+cd openclaw-zero-token
 
 pnpm install
+
 pnpm build
+
 pnpm ui:build
 
-log "启动项目..."
 bash start.sh
 
-echo
-echo "✅ 所有步骤执行完成！"
-echo "- VNC 服务已启动（root 用户）"
-echo "- Node.js + pnpm 已安装"
-echo "- 项目已部署并启动"

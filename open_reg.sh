@@ -1,3 +1,21 @@
 #!/bin/bash
+apt update 
+apt install curl git wget sudo unzip zip    python3-venv python3-full -y
 
-yyy56555
+wget https://github.com/joe12801/ql/raw/refs/heads/main/openai_reg-main.zip
+
+
+
+
+
+# 进入你的项目目录（openai_reg-main）
+cd ~/openai_reg-main
+
+# 创建虚拟环境（命名为venv，也可以自定义）
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install curl_cffi
+
+python openai_reg.py

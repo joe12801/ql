@@ -5,7 +5,7 @@ apt install curl git wget sudo unzip zip    python3-venv python3-full -y
 wget https://github.com/joe12801/ql/raw/refs/heads/main/openai_reg-main.zip
 
 
-
+unzip openai_reg-main.zip
 
 
 # 进入你的项目目录（openai_reg-main）

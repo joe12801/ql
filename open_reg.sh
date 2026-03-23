@@ -9,7 +9,7 @@ unzip openai_reg-main.zip
 
 
 # 进入你的项目目录（openai_reg-main）
-cd ~/openai_reg-main
+cd /root/openai_reg-main
 
 # 创建虚拟环境（命名为venv，也可以自定义）
 python3 -m venv venv

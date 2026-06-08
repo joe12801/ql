@@ -10,7 +10,7 @@ chmod +x update_crt.sh
 crontab -l | grep -v "update_crt.sh" | crontab -
 
 # 重新添加一条
-(crontab -l ; echo "0 0 1 * * /usr/local/cert/update_crt.sh") | crontab -
+(crontab -l ; echo "0 0 * * 0 /usr/local/cert/update_crt.sh") | crontab -
 
 #显示cronjob列表
 echo "当前的cronjob列表："

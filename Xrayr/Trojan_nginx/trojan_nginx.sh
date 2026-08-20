@@ -12,7 +12,7 @@ sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
  
  
  
-bash <(curl -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/joe12801/ql/refs/heads/main/Xrayr/0.9.4xrayr.sh)
 cd /etc/XrayR
 rm -rf /etc/XrayR/config.yml
 wget https://github.com/joe12801/ql/raw/main/Xrayr/Trojan_nginx/config.yml

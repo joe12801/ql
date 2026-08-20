@@ -112,7 +112,8 @@ install_XrayR() {
     cd /usr/local/XrayR/
 
     # ============ 修改下载源为官方仓库 ============
-    url="https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+    #url="https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+    url="https://github.com/joe12801/ql/releases/download/${last_version}/XrayR-linux-${arch}.zip"
     echo -e "下载地址：${url}"
     wget -q -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
     if [[ $? -ne 0 ]]; then

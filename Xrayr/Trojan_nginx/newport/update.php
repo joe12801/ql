@@ -1,8 +1,8 @@
 <?php
 // 数据库配置信息
-$host = '175.178.196.61'; // 数据库服务器地址 
+$host = '129.204.61.71'; // 数据库服务器地址 
 $username = 'ports'; // 数据库用户名 
-$password = 'db4pfnxWY6Fk7aJt'; 
+$password = 'RG44MXbHME3KF2py'; 
 // 数据库密码 
 $database = 'ports'; // 数据库名
 // 创建数据库连接
